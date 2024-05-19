@@ -10,6 +10,10 @@ builder.Services.AddScoped<GuidGenerator>();
 
 //Service registration stops here
 var app = builder.Build();
+//Middleware registration starts here
+
+
+
 
 app.MapGet("get-example", () => "Hello from GET");
 app.MapPost("post-example", () => "Hello from POST");
@@ -117,5 +121,5 @@ app.MapGet("cancel", (CancellationToken cancellationToken) =>
 
 
 
-
+//Middleware registration stops here
 app.Run();
