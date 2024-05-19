@@ -8,9 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<PeopleService>();
 builder.Services.AddScoped<GuidGenerator>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 //Service registration stops here
 var app = builder.Build();
 //Middleware registration starts here
+
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapGet("get-example", () => "Hello from GET");
 app.MapPost("post-example", () => "Hello from POST");
