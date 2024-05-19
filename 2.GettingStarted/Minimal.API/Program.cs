@@ -12,9 +12,6 @@ builder.Services.AddScoped<GuidGenerator>();
 var app = builder.Build();
 //Middleware registration starts here
 
-
-
-
 app.MapGet("get-example", () => "Hello from GET");
 app.MapPost("post-example", () => "Hello from POST");
 
@@ -128,7 +125,12 @@ app.MapGet("redirect", () => Results.Redirect("https://google.com"));
 app.MapGet("download", () => Results.File("./myfile.txt"));
 
 
+app.MapGet("logging", (ILogger<Program> logger) =>
+{
+    logger.LogInformation("Hello from endpoint");
 
+    return Results.Ok();
+});
 
 
 
