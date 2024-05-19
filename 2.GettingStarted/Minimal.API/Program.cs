@@ -3,10 +3,12 @@ using Minimal.API;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+//Service registration starts here
 
 builder.Services.AddScoped<PeopleService>();
 builder.Services.AddScoped<GuidGenerator>();
 
+//Service registration stops here
 var app = builder.Build();
 
 app.MapGet("get-example", () => "Hello from GET");
