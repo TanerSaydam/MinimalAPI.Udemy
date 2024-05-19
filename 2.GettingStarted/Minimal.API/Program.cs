@@ -83,7 +83,6 @@ app.MapPost("people", (Person person) =>
 });
 
 
-
 app.MapGet("httpContext", async context =>
 {
     await context.Response.WriteAsync("Hello from the httpContext");
@@ -118,6 +117,19 @@ app.MapPost("post-point", (MapPoint point) =>
 {
     return Results.Ok(point);
 });
+
+
+app.MapGet("simple-string", () => "Hello world");
+app.MapGet("json-raw-obj", () => new { Message = "hello world" });
+app.MapGet("ok-obj", () => Results.Ok(new { Message = "hello world" }));
+app.MapGet("json-obj", () => Results.Json(new { Message = "hello world" }));
+app.MapGet("text-string", () => Results.Text("hello world"));
+app.MapGet("redirect", () => Results.Redirect("https://google.com"));
+app.MapGet("download", () => Results.File("./myfile.txt"));
+
+
+
+
 
 
 
