@@ -108,8 +108,16 @@ app.MapGet("cancel", (CancellationToken cancellationToken) =>
 });
 
 
+app.MapGet("get-point", (MapPoint point) => //localhost:7101?point=10.55,1.555
+{
+    return Results.Ok(point);
+});
 
 
+app.MapPost("post-point", (MapPoint point) =>
+{
+    return Results.Ok(point);
+});
 
 
 
