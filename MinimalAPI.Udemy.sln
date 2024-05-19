@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Intro", "1.Intro", "{64FC67DC-368B-40C4-AD8D-B5E5C34766E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.GettingStarted", "2.GettingStarted", "{AF5FE527-774F-4363-8191-3B50DB3F1841}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.LetsBuild", "3.LetsBuild", "{7400D43F-EDA6-4885-BEAF-0031374EDDC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Extending", "4.Extending", "{6EDC9E39-F547-4D22-9116-0462956607EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Structuring", "5.Structuring", "{5603F6B1-2D1C-4D99-84DF-CD89E988D614}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.Testing", "6.Testing", "{E547BDE1-0C66-4367-B842-F7EB7F3AD11F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.API", "1.Intro\Web.API\Web.API.csproj", "{1741862B-81A4-4904-8A35-83C38EF70563}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1741862B-81A4-4904-8A35-83C38EF70563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1741862B-81A4-4904-8A35-83C38EF70563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1741862B-81A4-4904-8A35-83C38EF70563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1741862B-81A4-4904-8A35-83C38EF70563}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1741862B-81A4-4904-8A35-83C38EF70563} = {64FC67DC-368B-40C4-AD8D-B5E5C34766E5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E73D7543-2632-4574-9544-96CE909265D3}
+	EndGlobalSection
+EndGlobal
