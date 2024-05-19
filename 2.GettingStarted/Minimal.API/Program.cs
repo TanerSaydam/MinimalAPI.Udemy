@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Minimal.API;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,8 +53,6 @@ app.MapGet("books/{isbn:length(13)}", (string isbn) =>
 });
 
 
-
-
 app.MapGet("people/search", (string? searchTerm, PeopleService peopleService) =>
 {
     if (searchTerm is null) return Results.NotFound();
@@ -77,6 +76,30 @@ app.MapPost("people", (Person person) =>
     return Results.Ok(person);
 });
 
+
+
+app.MapGet("httpContext", async context =>
+{
+    await context.Response.WriteAsync("Hello from the httpContext");
+});
+
+app.MapGet("http", async (HttpRequest request, HttpResponse response) =>
+{
+    var queryString = request.QueryString;
+    await response.WriteAsync($"Hello from the http, Query string is: {queryString}");
+});
+
+
+app.MapGet("claims", (ClaimsPrincipal user) =>
+{
+    var claims = user.Claims.ToList();
+    return Results.Ok(claims);
+});
+
+app.MapGet("cancel", (CancellationToken cancellationToken) =>
+{
+    return Results.Ok();
+});
 
 
 
