@@ -1,6 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
 using Minimal.API;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<PeopleService>();
+builder.Services.AddScoped<GuidGenerator>();
+
 var app = builder.Build();
 
 app.MapGet("get-example", () => "Hello from GET");
@@ -45,5 +50,47 @@ app.MapGet("books/{isbn:length(13)}", (string isbn) =>
 {
     return $"Isbn provided was: {isbn}";
 });
+
+
+
+
+app.MapGet("people/search", (string? searchTerm, PeopleService peopleService) =>
+{
+    if (searchTerm is null) return Results.NotFound();
+
+    var result = peopleService.Search(searchTerm);
+
+    return Results.Ok(result);
+});
+
+app.MapGet("mix/{routeParams}", (
+    string routeParams,
+    [FromQuery(Name = "q")] int queryParams,
+    GuidGenerator guidGenerator) =>
+{
+    return $"{routeParams} {queryParams} {guidGenerator.NewGuid}";
+});
+
+
+app.MapPost("people", (Person person) =>
+{
+    return Results.Ok(person);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.Run();
