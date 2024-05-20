@@ -13,7 +13,7 @@ public static class BookEndpoints
         app.MapGet("login", (JwtProvider jwtProvider) =>
         {
             return Results.Ok(new { Token = jwtProvider.CreateToken() });
-        });
+        }).WithTags("Auth");
 
         app.MapPost("books", async (Book book, IBookService bookService, CancellationToken cancellationToken) =>
         {
@@ -29,25 +29,25 @@ public static class BookEndpoints
 
             return Results.CreatedAtRoute("GetBook", new { isbn = book.Isbn });
             //return Results.Created($"/books/{book.Isbn}", book);
-        });
+        }).WithTags("Books");
 
         app.MapGet("books", [Authorize] async (IBookService bookService, CancellationToken cancellationToken) =>
         {
             var books = await bookService.GetAllAsync(cancellationToken);
             return Results.Ok(books);
-        });
+        }).WithTags("Books");
 
         app.MapGet("books/{isbn}", async (string isbn, IBookService bookService, CancellationToken cancellationToke) =>
         {
             Book? book = await bookService.GetByIsbnAsync(isbn, cancellationToke);
             return Results.Ok(book);
-        }).WithName("GetBook");
+        }).WithName("GetBook").WithTags("Books");
 
         app.MapGet("get-books-by-title/{title}", async (string title, IBookService bookService, CancellationToken cancellationToke) =>
         {
             var books = await bookService.SearchByTitleAsync(title, cancellationToke);
             return Results.Ok(books);
-        });
+        }).WithTags("Books");
 
         app.MapPut("books", async (Book book, IBookService bookService, CancellationToken cancellationToken) =>
         {
@@ -62,7 +62,7 @@ public static class BookEndpoints
             if (!result) return Results.BadRequest("Something went wrong!");
 
             return Results.Ok(new { Message = "Book update is successful" });
-        });
+        }).WithTags("Books");
 
         app.MapDelete("books/{isbn}", async (string isbn, IBookService bookService, CancellationToken cancellationToken) =>
         {
@@ -70,6 +70,6 @@ public static class BookEndpoints
             if (!result) return Results.BadRequest("Something went wrong!");
 
             return Results.Ok(new { Message = "Book delete is successful" });
-        });
+        }).WithTags("Books");
     }
 }
