@@ -141,15 +141,6 @@ app.MapGet("logging", (ILogger<Program> logger) =>
     return Results.Ok();
 });
 
-
-
-
-
-
-
-
-
-
 app.MapControllers();
 
 //Middleware registration stops here

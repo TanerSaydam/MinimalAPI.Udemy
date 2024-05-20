@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minimal.API", "1.Intro\Mini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minimal.API", "2.GettingStarted\Minimal.API\Minimal.API.csproj", "{35026C3A-5A5F-4643-9F6C-5C5D9847C3CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.API", "3.LetsBuild\Library.API\Library.API.csproj", "{58B10573-C515-4AAE-9CE2-6FE382D8B965}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{35026C3A-5A5F-4643-9F6C-5C5D9847C3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35026C3A-5A5F-4643-9F6C-5C5D9847C3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35026C3A-5A5F-4643-9F6C-5C5D9847C3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B10573-C515-4AAE-9CE2-6FE382D8B965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B10573-C515-4AAE-9CE2-6FE382D8B965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B10573-C515-4AAE-9CE2-6FE382D8B965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B10573-C515-4AAE-9CE2-6FE382D8B965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{1741862B-81A4-4904-8A35-83C38EF70563} = {64FC67DC-368B-40C4-AD8D-B5E5C34766E5}
 		{423B03DE-F24E-4C82-BD7C-001C3FC77F32} = {64FC67DC-368B-40C4-AD8D-B5E5C34766E5}
 		{35026C3A-5A5F-4643-9F6C-5C5D9847C3CA} = {AF5FE527-774F-4363-8191-3B50DB3F1841}
+		{58B10573-C515-4AAE-9CE2-6FE382D8B965} = {7400D43F-EDA6-4885-BEAF-0031374EDDC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E73D7543-2632-4574-9544-96CE909265D3}
