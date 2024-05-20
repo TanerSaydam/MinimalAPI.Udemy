@@ -55,4 +55,19 @@ app.MapGet("get-books-by-title/{title}", async (string title, IBookService bookS
     return Results.Ok(books);
 });
 
+app.MapPut("books", async (Book book, IBookService bookService, CancellationToken cancellationToken) =>
+{
+    BookValidator validator = new();
+    ValidationResult validationResult = validator.Validate(book);
+    if (!validationResult.IsValid)
+    {
+        return Results.BadRequest(validationResult.Errors.Select(s => s.ErrorMessage));
+    }
+
+    var result = await bookService.UpdateAsync(book, cancellationToken);
+    if (!result) return Results.BadRequest("Something went wrong!");
+
+    return Results.Ok(new { Message = "Book update is successful" });
+});
+
 app.Run();
