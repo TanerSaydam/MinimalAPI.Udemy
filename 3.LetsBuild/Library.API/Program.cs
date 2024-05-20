@@ -70,4 +70,12 @@ app.MapPut("books", async (Book book, IBookService bookService, CancellationToke
     return Results.Ok(new { Message = "Book update is successful" });
 });
 
+app.MapDelete("books/{isbn}", async (string isbn, IBookService bookService, CancellationToken cancellationToken) =>
+{
+    var result = await bookService.DeleteAsync(isbn, cancellationToken);
+    if (!result) return Results.BadRequest("Something went wrong!");
+
+    return Results.Ok(new { Message = "Book delete is successful" });
+});
+
 app.Run();
