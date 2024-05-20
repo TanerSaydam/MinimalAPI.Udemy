@@ -49,4 +49,10 @@ app.MapGet("books/{isbn}", async (string isbn, IBookService bookService, Cancell
     return Results.Ok(book);
 });
 
+app.MapGet("get-books-by-title/{title}", async (string title, IBookService bookService, CancellationToken cancellationToke) =>
+{
+    var books = await bookService.SearchByTitleAsync(title, cancellationToke);
+    return Results.Ok(books);
+});
+
 app.Run();
