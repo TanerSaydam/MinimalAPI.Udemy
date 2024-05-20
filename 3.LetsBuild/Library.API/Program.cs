@@ -43,4 +43,10 @@ app.MapGet("books", async (IBookService bookService, CancellationToken cancellat
     return Results.Ok(books);
 });
 
+app.MapGet("books/{isbn}", async (string isbn, IBookService bookService, CancellationToken cancellationToke) =>
+{
+    Book? book = await bookService.GetByIsbnAsync(isbn, cancellationToke);
+    return Results.Ok(book);
+});
+
 app.Run();
