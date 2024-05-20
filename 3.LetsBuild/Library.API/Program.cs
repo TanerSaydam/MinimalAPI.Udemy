@@ -3,11 +3,29 @@ using Library.API.Context;
 using Library.API.Models;
 using Library.API.Services;
 using Library.API.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.Local.json", true, true);
+
+builder.Services.AddAuthentication().AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
+        ValidIssuer = "Taner Saydam",
+        ValidAudience = "Taner Saydam",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my secret key my secret key my secret key my secret key my secret key my secret key "))
+    };
+});
+builder.Services.AddAuthorization();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,11 +36,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<JwtProvider>();
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+
+app.MapGet("login", (JwtProvider jwtProvider) =>
+{
+    return Results.Ok(new { Token = jwtProvider.CreateToken() });
+});
 
 app.MapPost("books", async (Book book, IBookService bookService, CancellationToken cancellationToken) =>
 {
@@ -39,7 +64,7 @@ app.MapPost("books", async (Book book, IBookService bookService, CancellationTok
     return Results.Ok(new { Message = "Book create is successful" });
 });
 
-app.MapGet("books", async (IBookService bookService, CancellationToken cancellationToken) =>
+app.MapGet("books", [Authorize] async (IBookService bookService, CancellationToken cancellationToken) =>
 {
     var books = await bookService.GetAllAsync(cancellationToken);
     return Results.Ok(books);
